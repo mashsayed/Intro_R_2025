@@ -44,6 +44,7 @@ Analyzing political parties, their positions and their election results is among
 - ParlGov has collected data on a variety of countries, their elections, their outcome and the resulting cabinets. Generally, they provide an expansive data collection on elections and their results. [Website](https://www.parlgov.org/)
 
 ```{r data}
+#reading data
 pop <- read_dta("data/party_means.dta")
 parl <- read.csv("data/parlgov_election.csv")
 ```
