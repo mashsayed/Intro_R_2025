@@ -224,7 +224,7 @@ Notice that both political ideology and social trust are scaled from 0-10, maybe
 #range(df$mean_lr)
 #range(df$mean_trust)
 
-#after lesson five you will do it this way apply(df, 2, range)
+#after lesson four you will do it this way apply(df, 2, range)
 
 plot(df$education,
     df$mean_lr,
@@ -607,4 +607,5 @@ Something else that you will run into is the par() command which allows you to a
 
 Instead, it would be great it if you check the file "Intro_to_R_Session_4_ggplot.Rmd" and see how plotting is done in ggplot.
 Maybe you will like that alternative way more!
+
 
