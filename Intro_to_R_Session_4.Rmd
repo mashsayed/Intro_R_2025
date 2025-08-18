@@ -1,5 +1,5 @@
 ---
-title: "Intro to R: Session 5"
+title: "Intro to R: Session 4"
 output:
   html_notebook:
   pdf_document:
@@ -9,7 +9,7 @@ editor_options:
     wrap: sentence
 ---
 
-# Chapter 05: Loops and Functions
+# Chapter 04: Loops and Functions
 
 For our last chapter I want to introduce to a way to work more efficient.
 R is a programming language for statistical analysis, but it also includes classical elements of programming.
@@ -515,5 +515,6 @@ To further develop your R Skills, check out the two courses from Okan and Lion t
 -   [Introduction to Econometrics in R](https://www.econometrics-with-r.org/index.html).
     You will take the QM course, but this book is helpful, when it comes to data analysis in R.
     Maybe it helps as a cheat sheet for QM.
+
 
 
