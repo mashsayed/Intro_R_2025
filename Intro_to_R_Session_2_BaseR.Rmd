@@ -1,5 +1,5 @@
 ---
-title: "Intro to R: Session 4"
+title: "Intro to R: Session 2"
 output:
   html_notebook:
   pdf_document:
@@ -9,7 +9,7 @@ editor_options:
     wrap: sentence
 ---
 
-# Chapter 4: Data Visualization
+# Chapter 2: Data Visualization
 
 ## The plot command
 
@@ -607,3 +607,4 @@ Something else that you will run into is the par() command which allows you to a
 
 Instead, it would be great it if you check the file "Intro_to_R_Session_4_ggplot.Rmd" and see how plotting is done in ggplot.
 Maybe you will like that alternative way more!
+
