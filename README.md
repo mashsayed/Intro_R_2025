@@ -1,1 +1,1 @@
-Here are the files for the Intro to R course for the 2024 master's cohort in political science at the University of Mannheim.
+Here are the files for the Intro to R course for the 2025 master's cohort in political science at the University of Mannheim.
