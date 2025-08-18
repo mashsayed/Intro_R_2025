@@ -1,5 +1,5 @@
 ---
-title: "Intro to R: Session 3"
+title: "Intro to R: Extra Session"
 output:
   html_notebook:
   pdf_document:
@@ -10,7 +10,7 @@ editor_options:
 ---
 
 
-# Chapter 3: Exploratory Data Analysis
+# Exploratory Data Analysis
 
 ## 1. New Packages: The Psych-Package 
 
@@ -207,6 +207,7 @@ Judging from our correlation plot, there appears to be a correlation between the
 ```{r thepeop}
 
 ```
+
 
 
 
