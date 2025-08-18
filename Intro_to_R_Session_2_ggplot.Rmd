@@ -1,5 +1,5 @@
 ---
-title: "Intro to R: Session 4"
+title: "Intro to R: Session 2"
 output:
   html_notebook:
   pdf_document:
@@ -10,7 +10,7 @@ editor_options:
 ---
 
 
-# Chapter 4: Data Visualization with GGPlot
+# Chapter 2: Data Visualization with GGPlot
 
 ## 1. GGPlot2: Simpliefied Plotting in R
 
@@ -252,6 +252,7 @@ Now, add labels to the variables and give the graph a title. Give the graph the 
 ```{r equal2}
 
 ```
+
 
 
 
