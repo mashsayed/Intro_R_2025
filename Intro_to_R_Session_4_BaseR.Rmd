@@ -1,0 +1,609 @@
+---
+title: "Intro to R: Session 4"
+output:
+  html_notebook:
+  pdf_document:
+  html_document:
+editor_options: 
+  markdown: 
+    wrap: sentence
+---
+
+# Chapter 4: Data Visualization
+
+## The plot command
+
+The plot() command is quite powerful and you can almost plot anything with it.
+The trick is plotting what you want to see.
+let's load some data and get started.
+
+```{r}
+
+#loading tidyverse library
+library(tidyverse)
+
+#loading our ESS data
+
+ess_data <- read.csv("data/ESS10_sub.csv")
+
+
+#let's select some variables of the dataframe and pass them through plot()
+
+plot(ess_data[1:1000,c("agea", "polintr", "lrscale", "eisced")])
+
+#we get a bunch of scatter plots, but they are not meaningful
+
+```
+
+Okay then, let's start with the basics!
+The plot command creates an empty canvas that you can start adding points, lines, polygons...etc on.
+Each plot() commands produces one figure.
+When you call the plot() command again then your old figure will be overwritten by the new plot, i.e., you should have one plot() command per chunk, unless you save your figure for example as a PNG and not just display it.
+
+```{r}
+#very basic plot
+
+plot(x = c(1,2,3,4),
+     y = c(2,4,6,8)
+)
+
+#we can a scatter plot
+
+```
+
+```{r}
+#the default is a point plot, but you can make it a line plot
+
+plot(x = c(1,2,3,4),
+     y = c(2,4,6,8),
+     type = "l"
+)
+
+# type = "l" means line (it is a small L not a 1!!), you can make type = "p" for points and "s" for step..try it out!
+
+
+
+
+```
+
+```{r}
+
+#you can adjust your line 
+
+plot(x = c(1,2,3,4),
+     y = c(2,4,6,8),
+     type = "l",
+     lwd = 2,     #line width
+     lty = 3,     #line type (solid, dashed, dotted..etc)
+     col = "blue" #line color, if color is recognized code color changes
+)
+
+```
+
+```{r}
+
+#let's add titles for the axes and the plot
+
+plot(c(1,2,3,4),  #the first two arguments are your x and y
+     c(2,4,6,8),  #so you dont need to write x = and y =
+     type = "l",
+     lwd = 2,     
+     lty = 3,     
+     col = "blue",  #transparent: col = adjustcolor("blue",alpha.f=0.5)
+     main = "An Example plot",
+     xlab = "dummy x",
+     ylab = "dummy y"
+)
+
+```
+
+```{r}
+
+#notice how the plot does not start exactly at x = 1 and y = 2?
+#we can change that, also let's change the size of the text
+
+plot(c(1,2,3,4),
+     c(2,4,6,8),
+     type = "l",
+     lwd = 2,     
+     lty = 3,     
+     col = "blue",
+     main = "An Example plot",
+     xlab = "dummy x",
+     ylab = "dummy y",
+     yaxs="i",         #removes empty space at start of y-axis
+     xaxs="i",         #removes empty space at start of x-axis
+     cex.axis = 0.8,    #changes size of axis labels
+     cex.lab =  1.2,    #changes size of axis titles
+     cex.main = 1.4     #changes size of plot titles
+)
+
+```
+
+```{r}
+#let's change it back to a point plot and change the shape of the point
+
+plot(c(1,2,3,4),
+     c(2,4,6,8),
+     type = "p",
+     pch = 17,       #instead of line type, we choose point character   
+     col = "blue",
+     main = "An Example plot",
+     xlab = "dummy x",
+     ylab = "dummy y",
+     yaxs="i",         
+     xaxs="i",         
+     cex.axis = 0.8,    
+     cex.lab =  1.2,    
+     cex.main = 1.4     
+)
+```
+
+```{r}
+#oh no some of our points are not showing
+#let's change our minimum and maximum values of our axes
+
+#let's change it back to a point plot and change the shape of the point
+
+plot(c(1,2,3,4),
+     c(2,4,6,8),
+     xlim = c(0,5),
+     ylim = c(0,10),
+     type = "p",
+     pch = 17,       #instead of line type, we choose point character   
+     col = "blue",
+     main = "An Example plot",
+     xlab = "dummy x",
+     ylab = "dummy y",
+     yaxs="i",         
+     xaxs="i",         
+     cex.axis = 0.8,    
+     cex.lab =  1.2,    
+     cex.main = 1.4     
+)
+```
+
+Enjoying the show?
+will no more because it is your turn to plot yourself!
+
+```{r}
+#prepare the data
+
+df_raw <- na.omit(data.frame(  
+ education = ifelse(ess_data$eisced > 7, NA, ess_data$eisced),
+  left_right = ifelse(ess_data$lrscale > 10, NA, ess_data$lrscale),
+ soc_trust =  ifelse(ess_data$ppltrst > 10, NA, ess_data$ppltrst)))
+
+
+df<- group_by(df_raw, education) %>% 
+  summarise(mean_lr = mean(left_right), mean_trust = mean(soc_trust))
+
+print(df)
+
+```
+
+Now, you have a dataframe with the mean political ideology (higher means more conservative) and mean social trust (higher means more trust) for each education level (higher means more educated).
+Plot the relationship between education and political ideology, then between education and social trust.
+Try to change the line width, type, and color between the two plots.
+Add adequate labels.
+
+```{r plot education and ideology}
+
+
+
+
+
+
+
+
+
+
+```
+
+```{r plot education and social trust}
+
+
+
+
+
+
+
+
+
+
+
+
+```
+
+Notice that both political ideology and social trust are scaled from 0-10, maybe we can have both on the same plot?
+
+```{r}
+
+#to set xlim and ylim, find the max and min values in your data
+#range(df$education)
+#range(df$mean_lr)
+#range(df$mean_trust)
+
+#after lesson five you will do it this way apply(df, 2, range)
+
+plot(df$education,
+    df$mean_lr,
+    xlim = c(1,7),
+    ylim = c(4,6),
+     type = "l",
+     lwd = 2,     
+     col = "blue",
+     main = expression("The Relatiohsip Between Education \n Political Ideology and Social Trust"),
+     xlab = "Education Level",
+     ylab = "Political Ideology/Social Trust",
+     yaxs="i",         
+     xaxs="i",         
+     cex.main = 1.2
+)
+
+
+lines(
+      df$education,
+      df$mean_trust,
+      lwd = 2,
+      col = "red"
+      )
+
+```
+
+So once we have the plot() command open, we can add more times to the same plot.
+We can add points too!
+
+```{r}
+
+#let's say we went out and asked our friends about their education, trust and ideology, and see how they compare to the mean of the dataset
+
+df$edu_friends <- c(4,2,5,1,3,7,6)
+df$lr_friends <-  c(5.2,5.5,5.3,5.5,5.5,5,5.1)
+df$tr_friends <-  c(5,4.4,5.2,4.4,4.8,5.8,5.5)
+
+
+plot(df$education,
+    df$mean_lr,
+    xlim = c(1,7),  
+    ylim = c(4,6), 
+     type = "l",
+     lwd = 2,     
+     col = "blue",
+     main = "The Relatiohsip Between Education, \n Political Ideology and Social Trust",
+     xlab = "Education Level",
+     ylab = "Political Ideology/Social Trust",
+     cex.main = 1.2
+)
+
+
+lines(
+      df$education,
+      df$mean_trust,
+      lwd = 2,
+      col = "red"
+      )
+
+#say hi to the points() command
+points(
+       df$edu_friends,
+       df$lr_friends,
+       pch = 16,       #filled circle
+       col = "blue",
+       cex = 1.5        #point size
+)
+
+
+#yup we can do it many times
+points(
+       df$edu_friends,
+       df$tr_friends,
+       pch = 15,       #filled square
+       col = "red",
+       cex = 1.5        #point size
+)
+
+
+```
+
+```{r}
+#the reader has no idea which color is what and what are the points about so let's add a Legend!
+
+
+plot(df$education,
+    df$mean_lr,
+    xlim = c(1,7),  
+    ylim = c(4,6), 
+     type = "l",
+     lwd = 2,     
+     col = "blue",
+     main = "The Relatiohsip Between Education, \n Political Ideology and Social Trust",
+     xlab = "Education Level",
+     ylab = "Political Ideology/Social Trust",
+     cex.main = 1.2
+)
+
+grid() #throw in a grid for fun!
+box()  #box because the gird is plotted on top of the plot border
+
+
+lines(
+      df$education,
+      df$mean_trust,
+      lwd = 2,
+      col = "red"
+      )
+
+#say hi to the points() command
+points(
+       df$edu_friends,
+       df$lr_friends,
+       pch = 16,       #filled circle
+       col = "blue",
+       cex = 1.5        #point size
+)
+
+
+#yup we can do it many times
+points(
+       df$edu_friends,
+       df$tr_friends,
+       pch = 15,       #filled square
+       col = "red",
+       cex = 1.5        #point size
+)
+
+legend("bottomright",   #you can give x and y or location text
+       legend = c("Mean ESS Left-Right", 
+                  "Mean ESS Social Trust", 
+                  "Friends Left-Right",
+                  "Friends Social Trust"),   #the text to be displayed
+       lwd = c(2, 2,
+               NA, NA),       #the two lines have lwd 2, points have NA
+       col = c("blue", "red",
+               "blue", "red"),
+       pch = c(NA,NA,
+               16,15), #lines have NA pch, then pch for points
+       cex = 0.8           #size of legend
+       )
+
+#find more legend options using ?legend
+
+
+```
+
+Other legend locations are "top", "bottom", "topleft", "topright"...etc
+
+Now you are it!
+Let's see you make a plot with a legend.
+
+```{r}
+
+df2_raw <- na.omit(data.frame(  
+ female = ifelse(ess_data$gndr > 1, 1, 0),
+  fair_courts = ifelse(ess_data$cttresa > 10, NA, ess_data$cttresa)))
+
+
+df2<- group_by(df2_raw, female) %>% 
+  summarise(mean_courts = mean(fair_courts), se_courts = sd(fair_courts)/sqrt(n()))
+
+print(df2)
+
+
+```
+
+Now you have the mean level of support for fairness of courts broken down by gender.
+Plot the mean level of support (point plot) then after successfully finishing the plot, add lines to the plot for the standard error.
+Don't forget labels and legend!
+
+hint: to plot the standard error, you to draw line connecting the following two points:
+
+mean + SE and mean - SE.
+
+```{r}
+
+
+
+
+
+
+
+```
+
+That one wasn't easy, let's see it in a basic form then more advanced.
+
+```{r}
+
+plot(df2$female,
+    df2$mean_courts,
+    xlim = c(-1,2),  
+    ylim = c(8.98,9.08), 
+     type = "p",
+     pch = 16,     
+     col = "black",
+     main = "The Relatiohsip Between Gender and Supporting Fairness of Courts",
+     xlab = "Participant is Female",
+     ylab = "Support for Fairness of Courts",
+      yaxs="i",         
+      xaxs="i",
+    cex.main =  0.95
+)
+
+
+lines(
+      c(df2[1,1],df2[1,1]),
+       c(df2[1,2]-df2[1,3],df2[1,2]+df2[1,3]),
+      lwd = 2,
+      col = "black"
+      )
+
+lines(
+      c(df2[2,1],df2[2,1]),
+       c(df2[2,2]-df2[2,3],df2[2,2]+df2[2,3]),
+      lwd = 2,
+      col = "black"
+      )
+
+
+legend("bottomleft",   
+       legend = c("Mean Value",  "Standard Error"),   
+       col = "black",
+       pch = c(16,NA), 
+       cex = 0.8          
+       )
+
+text(-0.935,8.9865,"|")
+
+
+```
+
+Something about the x-axis doesn't look right, well...let's push it to the next level!
+
+```{r}
+
+
+plot(df2$female,
+    df2$mean_courts,
+    xaxt = "n",          #we remove the x-axis so we can create it our way
+    xlim = c(-1,2),  
+    ylim = c(8.98,9.08), 
+     type = "p",
+     pch = 16,     
+     col = "black",
+     main = "The Relatiohsip Between Gender and Supporting Fairness of Courts",
+    xlab = "",          # we don't need that anymore, you will see
+     ylab = "Support for Fairness of Courts",  
+      yaxs="i",         
+      xaxs="i",
+    cex.main =  0.95
+)
+
+axis(
+      1,            #x-axis, 2 is y-axis
+      at = c(0,1),  # where the labels will be placed
+      tick = F,     #remove tick marks
+      labels = c("Male", "Female")
+      )
+
+
+lines(
+      c(df2[1,1],df2[1,1]),
+       c(df2[1,2]-df2[1,3],df2[1,2]+df2[1,3]),
+      lwd = 2,
+      col = "black"
+      )
+
+lines(
+      c(df2[2,1],df2[2,1]),
+       c(df2[2,2]-df2[2,3],df2[2,2]+df2[2,3]),
+      lwd = 2,
+      col = "black"
+      )
+
+
+legend("bottomleft",   
+       legend = c("Mean Value",  "Standard Error"),   
+       col = "black",
+       pch = c(16,NA), 
+       cex = 0.8          
+       )
+
+text(-0.935,8.9865,"|")
+
+```
+
+As you can see, you can do almost anything with your plots.
+Sometimes you just need to think linearly and type all the arguments, other times you need to think outside the box.
+
+Now let's look at two other important types of plots: histograms and density plots!
+Both are used to see the distribution of your variables, the mean alone or the min/max don't tell the entire story.
+
+```{r}
+
+hist(df_raw$left_right)
+
+#we can see that our sample is pretty balanced between left and right, and many people identify right in the center
+
+#we know we have 11 (0-10) which translates to 10 intervals, let's add that in to make the graph look better with another edits
+
+```
+
+```{r}
+
+hist(df_raw$left_right,
+     ylab = "",
+     xlab = "Left-Right",
+     main = "Histogram for Lef-Right Political Placement",
+     breaks = 10,
+     col = "darkgrey")
+
+
+```
+
+A similar plot can be obtained with plotting the density
+
+```{r}
+
+plot(
+     density(df_raw$left_right), #notice density() replaced both x and y
+     ylab = "Density",
+     xlab = "Left-Right",
+     main = "Distribution of Lef-Right Political Placement",
+     lwd = 2
+     )
+
+
+```
+
+```{r}
+#let's plot the density of something else
+
+plot(
+     density(df2_raw$female), 
+     ylab = "Density",
+     xlab = "Gender:Male = 0, Female = 1",
+     main = "Distribution of Gender in the Sample",
+     lwd = 2
+     )
+
+#we have a bit more females than males in our sample,which is to be expected
+
+```
+
+```{r}
+#you can save your plot as PNG, PDF, or SVG to your computer instead  of just displaying it
+
+png("density_plot_gender.png",
+    width = 5, height = 6,  units = "in", #size of the plot (here in inches)
+    res = 300  #resolution (dpi), 300 is usually pretty good
+    )
+
+plot(
+     density(df2_raw$female), 
+     ylab = "Density",
+     xlab = "Gender:Male = 0, Female = 1",
+     main = "Distribution of Gender in the Sample",
+     lwd = 2
+     )
+
+dev.off() #tells R the plotting is over
+
+
+```
+
+### Concluding Remarks
+
+This should give you a good introduction to plotting in R.
+Once you have the base, you simply add every detail to your graphic step by step.
+There are a lot more small details you can adjust in your graphics, but there are too many to cover them all.
+The idea was to introduce you to the basics to start making your own graphics, that are presentable enough for publication.
+If you want to save your plots, you can simply click the export button in the plot window.
+For a cheat sheet, click this [Link](https://publish.illinois.edu/johnrgallagher/files/2015/10/BaseGraphicsCheatsheet.pdf).
+
+You will encounter numerous other plot types such as bar plots and box plots.
+Something else that you will run into is the par() command which allows you to adjust the margin of your graph and display multiple figures on the same plot (next to each other).
+
+### No Exercises this time!
+
+Instead, it would be great it if you check the file "Intro_to_R_Session_4_ggplot.Rmd" and see how plotting is done in ggplot.
+Maybe you will like that alternative way more!
