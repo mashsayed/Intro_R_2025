@@ -1,5 +1,5 @@
 ---
-title: "Intro to R: Session 2"
+title: "Intro to R: Session 3"
 output:
   html_notebook:
   pdf_document:
@@ -9,7 +9,7 @@ editor_options:
     wrap: sentence
 ---
 
-# Chapter 2: Data Manipulation
+# Chapter 3: Data Manipulation
 
 ## 1. Packages
 
@@ -987,3 +987,4 @@ b.  We already loaded World Bank Data in the object **wb**. Merge the two datase
 head(wb)
 
 ```
+
