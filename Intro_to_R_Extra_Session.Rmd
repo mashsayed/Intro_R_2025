@@ -56,13 +56,27 @@ parl <- read.csv("data/parlgov_election.csv")
 
 ### 2.1 Merging the Datasets
 
-To get a complete dataset on party positions and the parties' vote shares, we will need to merge the two datasets. Do you remember how to do that? To our luck, it just so happens that the POPPA data includes a variable that has the ParlGov ID of every party, making merging easy for us. However, as POPPA only measures party positions at around 2018, we have to limit ParlGov to this time frame. 
+To get a complete dataset on party positions and the parties' vote shares, we will need to merge the two datasets. Do you remember how to do that? To our luck, it just so happens that the POPPA data includes a variable that has the ParlGov ID of every party, making merging easy for us. However, as POPPA only measures party positions at around 2018 (wave 1) and 2023 (wave 2), we have to limit ParlGov to this time frame. 
 
 ```{r merge}
-parl18 <- parl %>% 
-  filter(election_date <= 2019 & election_date >= 2017) 
 
-comp <- left_join(parl18, pop, by = c("party_id" = "parlgov_id"))
+# restrict time frame of ParlGov data
+parl17 <- parl %>% 
+  filter(election_date <= 2023 & election_date >= 2017) 
+
+# If we just merge by party identifiers now, we would merge both waves of the
+# POPPA data to each party in parl17. To avoid this, we have to decide on a
+# rule to match the data. Following, we will match all parties in elections
+# before 2022 with wave 1 and in or after 2022 with wave 2 of the POPPA data.
+
+# use ifelse() on election_date to assign a POPPA wave value
+parl17$wave <- ifelse(parl17$election_date >= 2022, 2, 1)
+
+# check that all observations in parl17 are coded
+table(parl17$wave, useNA = "always")
+
+# Now match both datasets using left_join()
+comp <- left_join(parl17, pop, by = c("party_id" = "poppa_id", "wave"))
 ```
 
 ## 3. A First Look at the Data
@@ -71,6 +85,7 @@ Now that our dataset is complete, we have a dataset that includes the vote share
 
 ```{r describe}
 describe(comp)
+
 ```
 
 The `describe()` function gives a great overview over each variable in the dataset. `Vars` simply shows us a count of the variables. Going to the last page, we can see that we have 42 variables in our dataset. `n` shows us the number of observations for each variable. Now, more interesting to us is the column named `mean`. This column shows us the arithmetic mean of each variable, something that of course only works with numeric variables. It shows us, that the average vote share lies at around 10.24%. However, this alone tells us relatively little. We also need the standard deviation (remember, the average deviation from the mean) as well. This is told by `sd`. We can see that a parties vote share lies at a mean of 10.24% with a standard deviation of +/- 10.98%, a rather big number in comparison to the mean. We can, from this, conclude that a mean will not get us very far, as the vote share seems to vary a lot. Three other important, that can show us how much the vote share actually varies, are `min`, `max`, and `range`, which tell us the minimum measured vote share, the highest measured vote share and the range between the minimum and maximum. Thus, we see that the lowest measured vote share is 0.21%, the highest is 55.04% and the range between the two is at 54.83% (max-min = range). We can of course also look at these values separately. The values are the same
