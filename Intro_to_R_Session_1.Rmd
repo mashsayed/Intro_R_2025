@@ -1135,7 +1135,7 @@ ranges of test scores and assign grades, similar to what we have learned in
 section "Logical Operator" for room temperature. 
 Alternatively, you can use the ifelse() function.
 
-```{r define grading function}
+```{r define grading function, eval = F}
 # define a function named grade_score()
 grade_score <- 
   # complete list of arguments (arglist)
@@ -1163,7 +1163,7 @@ grade_score <-
 If you have not done so already, now is the time to apply your newly declared 
 function on the `scores` vector. To do so, simply call your function, e.g. `grade_students()` and supply the necessary arguments.
 
-```{r apply grading function to test scores}
+```{r apply grading function to test scores, eval = F}
 # apply function to 'scores' vector
 grade_score(score =  ,
             #threshold_A = 90, # not needed if default value is correct
