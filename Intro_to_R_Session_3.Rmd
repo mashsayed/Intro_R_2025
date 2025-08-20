@@ -974,7 +974,7 @@ Note that merging is much easier using tidyverse so we will be using it directly
 
 ```{r}
 
-kof <- read_dta("data/KOFGI_2022_public.dta")
+kof <- read_dta("data/KOFGI_2024_public.dta")
 
 #head(kof)
 
