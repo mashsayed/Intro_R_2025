@@ -1,6 +1,6 @@
 ## European Social Survey - Round 11 (ESS11.csv)
 
-Round 11, on top of the base questionnaire, includes additional items on the themes \*Social inequalities in health\* (previously in round 7), \*Climate change\* (previously in round 8) and \*Gender\* (new theme). For further information on the variables included, you can consult the \[codebook (Appendix A7)](https://ess.sikt.no/en/study/412db4fe-c77a-4e98-8ea4-6c19007f551b/).
+Round 11, on top of the base questionnaire, includes additional items on the themes *Social inequalities in health* (previously in round 7), *Climate change* (previously in round 8) and *Gender* (new theme). For further information on the variables included, you can consult the [codebook (Appendix A7)](https://ess.sikt.no/en/study/412db4fe-c77a-4e98-8ea4-6c19007f551b/).
 
 
 
@@ -18,7 +18,7 @@ You can search for data using keywords, e.g. GDP to look for indicators of Gross
 ```
 WDIsearch('gdp')
 ```
-The keyword search relies on the `grep()` function. It is not case sensitive and supports \[\*regular expressions\*](https://cran.r-project.org/web/packages/stringr/vignettes/regular-expressions.html). 
+The keyword search relies on the `grep()` function. It is not case sensitive and supports [*regular expressions*](https://cran.r-project.org/web/packages/stringr/vignettes/regular-expressions.html). 
 
 
 
@@ -30,7 +30,7 @@ The KOF Globalisation Index measures the economic, social and political dimensio
 
 ## Populism and Political Parties Expert Survey (POPPA, party\_means.dta)
 
-The POPPA data comprises an Expert Survey on European parties' positions on a number of different ideological dimensions, with a focus on measuring a party's populism. For further information on the variables included, you can consult the \[codebook online](https://poppa-data.eu/wp-content/uploads/2024/11/codebook.html).
+The POPPA data comprises an Expert Survey on European parties' positions on a number of different ideological dimensions, with a focus on measuring a party's populism. For further information on the variables included, you can consult the [codebook online](https://poppa-data.eu/wp-content/uploads/2024/11/codebook.html).
 
 
 
@@ -44,7 +44,7 @@ ParlGov has collected data on a variety of countries, their elections, their out
 
 ## References 
 
-- European Social Survey European Research Infrastructure (ESS ERIC). (2025). _ESS11 - integrated file, edition 3.0 [Data set]_. Sikt - Norwegian Agency for Shared Services in Education and Research. <https://doi.org/10.21338/ess11e03\_0>.
+- European Social Survey European Research Infrastructure (ESS ERIC). (2025). _ESS11 - integrated file, edition 3.0 [Data set]_. Sikt - Norwegian Agency for Shared Services in Education and Research. <https://doi.org/10.21338/ess11e03_0>.
 
 - Gygli, S., F. Haelg, N. Potrafke and J. Sturm. (2019). The KOF Globalisation Index – Revisited. _Review of International Organizations 14_ (3): 543-574. <https://doi.org/10.1007/s11558-019-09344-2>.
 
