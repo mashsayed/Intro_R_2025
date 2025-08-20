@@ -12,22 +12,29 @@ editor_options:
 # Chapter 04: Loops and Functions
 
 For our last chapter I want to introduce to a way to work more efficient.
-R is a programming language for statistical analysis, but it also includes classical elements of programming.
+R is a programming language for statistical analysis, but it also includes 
+classical elements of programming.
+
 Two main operations are loops and functions.
-We can automate tasks and the earlier you learn about it the faster you can advance and understand the logic of R.
+We can automate tasks and the earlier you learn about it the faster you can 
+advance and understand the logic of R.
 
 ## 1. Loops
 
-For example, you can use a loop to iterate through a list of numbers and perform calculations on each number, or to go through the rows of a dataset and apply certain operations to each row.
-Loops provide a way to streamline your code and avoid writing repetitive instructions manually.
+For example, you can use a loop to iterate through a list of numbers and perform
+calculations on each number, or to go through the rows of a dataset and apply 
+certain operations to each row. Loops provide a way to streamline your code and 
+avoid writing repetitive instructions manually.
 
-There are different type of Loops, but for this course we focus just on the `for` loops, since you will see them also in the QM Tutorial.
+There are different type of Loops, but for this course we focus just on the 
+`for` loops, since you will see them also in the QM Tutorial.
 
 ### 1.2 `For` loops
 
 Do you remember my grade example from the first chapter?
 
 ```{r}
+# input a grade
 
 #inputting a grade
 
@@ -97,7 +104,8 @@ if (grade == 1.0) {
 
 ```
 
-I could now write down all my grades and assign them as I did in the first chapter, but there is a way to automatize this process.
+I could now write down all my grades and assign them as I did in the first chapter, 
+but there is a way to automatize this process.
 For that I will use the `For` loop.
 
 First, let us make a vector with grades:
@@ -110,17 +118,21 @@ grades <- c(1.7, 3.3, 2.3, 1.0)
 
 Now, we can directly dive into the loop.
 
--   Write down `for` and in brackets you define the **loop iterator**, this is the **i** in the loop.
-    Then you define in which object of interest you want to iterate.
+-   Write down `for` and in brackets you define the **loop iterator**, this is 
+    the **i** in the loop.
+    
+-   Then you define in which object of interest you want to iterate.
     In our case, the operation should be iterated in the grades vector.
     I could also write down the number 5, but it is convention to define an object.
     Why?
 
--   After closing the brackets you open fancy brackets and write down your function, as you would normally, but this time you need to define how the iterator is used.
-    Since I use the numbers in grades, my iterator needs to be put in brackets, after the name of the grades.
+-   After closing the brackets you open fancy brackets and write down your 
+    function,as you would normally, but this time you need to define how the 
+    iterator is used. Since I use the numbers in grades, my iterator needs to be
+    put in brackets, after the name of the grades.
     Why?
 
--   And that's it basically
+-   And that is it basically
 
 ```{r}
 
@@ -142,7 +154,8 @@ if (grades[i] == 1.0) {
 
 Loops can work differently:
 
-In this example I have a number vector and my let the console print a sentence, where I vary the number and therefore the sentence changes over every loop
+In this example I have a number vector and my let the console print a sentence, 
+where I vary the number and therefore the sentence changes over every loop
 
 ```{r}
 
@@ -156,7 +169,9 @@ for (i in num) {
 
 ```
 
-When would you need loops? When you apply an operation to multiple columns of your dataset one after the other (like obtain the mean of every column), or when adding elements to your plot as follows:
+When would you need loops? When you apply an operation to multiple columns of 
+your dataset one after the other (like obtain the mean of every column), or when
+adding elements to your plot as follows:
 
 ```{r}
 #lets create a dataset for the relationship between age and certain characteristics
@@ -212,7 +227,8 @@ legend("bottomright",
 
 ### 1.2 Nested Loops
 
-Since you will eventually encounter them, I will show you shortly nested loops, although they are not super common (because most R functions are vectorized):
+Since you will eventually encounter them, I will show you shortly nested loops, 
+although they are not super common (because most R functions are vectorized):
 
 First, let us play a game of tic tac toe:
 
@@ -225,10 +241,11 @@ ttt <- matrix(c("X", "O", "X",
 
 ```
 
-We define a loop with an iterator **i** for the rows of the matrix, and we define another one for the columns with the iterator **j**.
+We define a loop with an iterator **i** for the rows of the matrix, and we 
+define another one for the columns with the iterator **j**.
 
-Afterwords, we built up the body, in which aim to get information about the matrix and its content.
-The sentence shows, which rows and columns contain which values.
+Afterwords, we built up the body, in which aim to get information about the matrix
+and its content. The sentence shows, which rows and columns contain which values.
 
 ```{r}
 
@@ -290,24 +307,28 @@ apply(mat, 2, sum, na.rm = T) #now we disregarded the NA
 
 ```
 
-The `apply()` function is useful especially if you are working with dimensional data structures and want to calculate anything.
-However, they can not keep up with the flexibility of loops, you should be aware of that.
+The `apply()` function is useful especially if you are working with dimensional 
+data structures and want to calculate anything. However, they can not keep up 
+with the flexibility of loops, you should be aware of that.
 
 ### Notes
 
-Loops and the apply function are widely used in programming.
-However, This is just an introductory course, so now you have an idea what is happening, if you are seeing those two things in the scripts.
-But if you are interested in this topic, please read into `while` loops and `repeat` loops.
-The `apply()` function is part of a family: `sapply()`, `lapply()`, `tapply()` are also in that family.
+Loops and the apply function are widely used in programming. However, This is 
+just an introductory course, so now you have an idea what is happening, if you 
+are seeing those two things in the scripts. But if you are interested in this 
+topic, please read into `while` loops and `repeat` loops. The `apply()` function
+is part of a family: `sapply()`, `lapply()`, `tapply()` are also in that family.
 
 ## 3. Writing your own functions
 
 We can again safe a lot of time and be more efficient by writing our own function.
 
 -   First, you need to define a name for your function#
--   Afterwards, you write down the command with the `function()` command. In to your brackets you put your variables. Later your input follows those variables.
+-   Afterwards, you write down the command with the `function()` command. Put your 
+    variables into the parentheses. Later your input follows those variables.
 -   After the fancy brackets, you define your operation with your predefined variables.
--   Lastly, you want the function to return your quantity of interest and close the fancy brackets
+-   Lastly, you want the function to return your quantity of interest and close 
+    the fancy brackets
 -   Afterwards you have a function saved and can operate with it
 
 ```{r}
@@ -341,8 +362,10 @@ aoc(5)
 ```
 
 Let us combine what we have learned in this chapter with the Fibonacci sequence.
-The Fibonnaci sequence starts with 0 and 1, and each subsequent number is the sum of the two numbers before it.
-The Fibonacci sequence continues indefinitely, producing a sequence like this: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, and so on.
+The Fibonnaci sequence starts with 0 and 1, and each subsequent number is the 
+sum of the two numbers before it.
+The Fibonacci sequence continues indefinitely, producing a sequence like this: 
+0, 1, 1, 2, 3, 5, 8, 13, 21, 34, and so on.
 
 ```{r}
 
@@ -435,8 +458,9 @@ mnf(2, -6, -8)
 
 ### Exercise 4: Zodiac Fortune Teller
 
-In the last exercise of this course, we will learn about our future based on our Zodiac Sign.
-For this we well need a `function`, a `loop` and an `ifelse` condition or function.
+In the last exercise of this course, we will learn about our future based on our 
+Zodiac Sign. For this we well need a `function`, a `loop` and an `ifelse` 
+condition or function.
 
 a.  First we define a function called `zodiacFortuneTeller()`.
     This function takes only your sign as input
@@ -445,7 +469,8 @@ b.  Afterwards we need to define our fortunes for each zodiac with a vector
 
 c.  Then we need to define a vector with contains the zodiac signs
 
-d.  Lastly we need a `for` loop, which returns the respective fortune for each zodiac sign.
+d.  Lastly we need a `for` loop, which returns the respective fortune for each 
+    zodiac sign.
 
 e.  This fortune should be returned
 
@@ -497,13 +522,22 @@ fortune <- function(sign) {
 See this course as a starting point.
 Do not be frustrated if you did not get everything at the first time.
 Learning R is a process and you need to be open to it.
-To further develop your R Skills, check out the two courses from Okan and Lion that we mentioned at the beginning and the course. Also here are some additional resources:
+To further develop your R Skills, check out the two courses from Okan and Lion 
+that we mentioned at the beginning and the course. 
+
+Also here are some additional resources:
 
 -   [R Cheatsheets](https://posit.co/resources/cheatsheets/): Especially in the beginning, it is hard to know important codes by heart.
     For this case the R cheat sheets for some important packages are helpful.
     I recommend to print or save digitally the cheat sheets for dplyr, ggplot2, and [base R](https://iqss.github.io/dss-workshops/R/Rintro/base-r-cheat-sheet.pdf).
 
--   [Hertie School Data Science Summer School 2021/22/23](https://www.youtube.com/@datasciencelab.berlin/playlists): Amazing tutorials in English from a top German University. The tutorials cover topics from introduction to R, visualizing data in R, to more advanced topics like webscraping with R. You can work on many skills and application of R once you are comfortable with the basics. You can freely watch the full tutorials on Youtube but also access the course materials [here](https://ds3.ai/summerschool), [here](https://ds3.ai/) and [here](https://ds3.ai/2022).
+-   [Hertie School Data Science Summer School 2021/22/23](https://www.youtube.com/@datasciencelab.berlin/playlists): 
+Amazing tutorials in English from a top German University. The tutorials cover 
+topics from introduction to R, visualizing data in R, to more advanced topics 
+like webscraping with R. You can work on many skills and application of R once 
+you are comfortable with the basics. You can freely watch the full tutorials on 
+Youtube but also access the course materials [here](https://ds3.ai/summerschool),
+[here](https://ds3.ai/) and [here](https://ds3.ai/2022).
 
 -   [R for Data Science, by Hadley Wickham & Garrett Grolemund](https://r4ds.had.co.nz/index.html).
     This is the most popular book for introductory in R.
@@ -513,8 +547,7 @@ To further develop your R Skills, check out the two courses from Okan and Lion t
     A complete R course, very detailed is this from Jenny Bryan.
 
 -   [Introduction to Econometrics in R](https://www.econometrics-with-r.org/index.html).
-    You will take the QM course, but this book is helpful, when it comes to data analysis in R.
-    Maybe it helps as a cheat sheet for QM.
-
+    You will take the QM course, but this book is helpful, when it comes to data
+    analysis in R. Maybe it helps as a cheat sheet for QM.
 
 

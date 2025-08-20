@@ -1,9 +1,15 @@
 ---
 title: "Intro to R: Extra Session"
 output:
-  html_notebook:
-  pdf_document:
   html_document:
+    toc: TRUE
+    toc_float: TRUE
+  pdf_document:
+    toc: TRUE
+    toc_float: TRUE
+  html_notebook:
+    toc: TRUE
+    code_folding: "none"
 editor_options: 
   markdown: 
     wrap: sentence
@@ -15,12 +21,12 @@ editor_options:
 ## 1. New Packages: The Psych-Package 
 
 Initially developed for psychological research, the `psych` Package will prove helpful for us in political science. Next to data visualization, factor analysis, reliability analysis and correlation analysis, this package will also help us to get an overview of hour datasets that we're working with. Getting a general look at your data is essential for getting a deeper understanding of what you are working with.
-We will also need the `tidyverse` and `haven`.
+We will also need `tidyverse` and `haven`.
 
 ```{r packages, message=FALSE, warning=FALSE, results='hide'}
 
 p_needed <-
-  c("tidyverse", "psych", "ineq", "corrplot")
+  c("tidyverse", "psych", "ineq", "corrplot","haven")
 
 packages <- rownames(installed.packages())
 
@@ -44,7 +50,6 @@ Analyzing political parties, their positions and their election results is among
 - ParlGov has collected data on a variety of countries, their elections, their outcome and the resulting cabinets. Generally, they provide an expansive data collection on elections and their results. [Website](https://www.parlgov.org/)
 
 ```{r data}
-#reading data
 pop <- read_dta("data/party_means.dta")
 parl <- read.csv("data/parlgov_election.csv")
 ```
@@ -62,7 +67,7 @@ comp <- left_join(parl18, pop, by = c("party_id" = "parlgov_id"))
 
 ## 3. A First Look at the Data
 
-Now that our dataset is complete, we have a dataset that includes the vote shares of parties as well as their political positions according to expert surveys. Time to get a good look at what data exactly we are dealing with! Let's make use of the `psych` package. 
+Now that our dataset is complete, we have a dataset that includes the vote shares of parties as well as their political positions according to expert surveys. Time to get a good look at what data exactly we are dealing with! Let us make use of the `psych` package. 
 
 ```{r describe}
 describe(comp)
@@ -152,7 +157,7 @@ With this we can say: 77 parties in the data received between 0% and 4% of votes
 
 ## 6. Crosstabulation
 
-Now, let us get to something more interesting! We now learned a lot about how to get a first look at single variables in our datasets. However, usually in science, we care about how two or more variables are connected and possibly correlate. But before we get into extensive inferential statistics, here too, it can be helpful to get a first exploratory look at the data at hand! One way to do so is crosstabulation. Cross tables let us look at how the distribution of two variables together. Let's look at an example.
+Now, let us get to something more interesting! We now learned a lot about how to get a first look at single variables in our datasets. However, usually in science, we care about how two or more variables are connected and possibly correlate. But before we get into extensive inferential statistics, here too, it can be helpful to get a first exploratory look at the data at hand! One way to do so is crosstabulation. Cross tables let us look at how the distribution of two variables together. Let us look at an example.
 
 ```{r cats}
 comp <- comp %>% 
@@ -208,7 +213,6 @@ Judging from our correlation plot, there appears to be a correlation between the
 ```{r thepeop}
 
 ```
-
 
 
 

@@ -2,11 +2,20 @@
 title: "Intro to R: Session 2"
 output:
   html_notebook:
+    toc: TRUE
+    code_folding: "none"
+    toc_level: 3
   pdf_document:
+    toc: TRUE
+    toc_float: TRUE
+    toc_level: 3
   html_document:
-editor_options: 
-  markdown: 
-    wrap: sentence
+    toc: TRUE
+    toc_float: TRUE
+    toc_level: 3
+  editor_options: 
+    markdown: 
+      wrap: sentence
 ---
 
 # Chapter 2: Data Visualization
@@ -15,51 +24,56 @@ editor_options:
 
 The plot() command is quite powerful and you can almost plot anything with it.
 The trick is plotting what you want to see.
-let's load some data and get started.
+Let us load some data and get started.
 
 ```{r}
-
-#loading tidyverse library
+# Load tidyverse package
 library(tidyverse)
 
-#loading our ESS data
+# Load ESS data
 
-ess_data <- read.csv("data/ESS10_sub.csv")
+ess_data <- read.csv("data/ESS11.csv")
 
 
-#let's select some variables of the dataframe and pass them through plot()
+# Select some variables of the dataframe and pass them through plot()
 
 plot(ess_data[1:1000,c("agea", "polintr", "lrscale", "eisced")])
 
-#we get a bunch of scatter plots, but they are not meaningful
+# We get a bunch of scatter plots but they are not meaningful
 
 ```
 
-Okay then, let's start with the basics!
-The plot command creates an empty canvas that you can start adding points, lines, polygons...etc on.
+Okay then, let us start with the basics!
+The plot command creates an empty canvas that you can start adding points, lines,
+polygons, etc.
 Each plot() commands produces one figure.
-When you call the plot() command again then your old figure will be overwritten by the new plot, i.e., you should have one plot() command per chunk, unless you save your figure for example as a PNG and not just display it.
+When you call the plot() command again then your old figure will be overwritten 
+by the new plot, i.e., you should have one plot() command per chunk, unless you 
+save your figure, for example as a PNG, and not just display it.
 
 ```{r}
-#very basic plot
+# a very basic plot
 
 plot(x = c(1,2,3,4),
      y = c(2,4,6,8)
 )
 
-#we can a scatter plot
+# Create a scatter plot
 
 ```
 
 ```{r}
-#the default is a point plot, but you can make it a line plot
+# the default is a point plot but you plot a line by declaring the type argument
 
 plot(x = c(1,2,3,4),
      y = c(2,4,6,8),
      type = "l"
 )
 
-# type = "l" means line (it is a small L not a 1!!), you can make type = "p" for points and "s" for step..try it out!
+# type = "l" means line (it is a small L not a 1!!)
+# alternatively you can declare type = "p" for points and "s" for step
+
+# try it out!
 
 
 
@@ -67,9 +81,7 @@ plot(x = c(1,2,3,4),
 ```
 
 ```{r}
-
-#you can adjust your line 
-
+# you can adjust your line 
 plot(x = c(1,2,3,4),
      y = c(2,4,6,8),
      type = "l",
@@ -81,9 +93,7 @@ plot(x = c(1,2,3,4),
 ```
 
 ```{r}
-
-#let's add titles for the axes and the plot
-
+# Add titles for the axes and the plot
 plot(c(1,2,3,4),  #the first two arguments are your x and y
      c(2,4,6,8),  #so you dont need to write x = and y =
      type = "l",
@@ -98,9 +108,8 @@ plot(c(1,2,3,4),  #the first two arguments are your x and y
 ```
 
 ```{r}
-
-#notice how the plot does not start exactly at x = 1 and y = 2?
-#we can change that, also let's change the size of the text
+# notice how the plot does not start exactly at x = 1 and y = 2?
+# we can change that, also let us change the size of the text (font size)
 
 plot(c(1,2,3,4),
      c(2,4,6,8),
@@ -121,8 +130,7 @@ plot(c(1,2,3,4),
 ```
 
 ```{r}
-#let's change it back to a point plot and change the shape of the point
-
+# Let us change it back to a point plot and change the shape of the point
 plot(c(1,2,3,4),
      c(2,4,6,8),
      type = "p",
@@ -137,13 +145,14 @@ plot(c(1,2,3,4),
      cex.lab =  1.2,    
      cex.main = 1.4     
 )
+
 ```
 
 ```{r}
-#oh no some of our points are not showing
-#let's change our minimum and maximum values of our axes
+# oh no some of our points are not showing
+# Let us change our minimum and maximum values of our axes
 
-#let's change it back to a point plot and change the shape of the point
+# Let us change it back to a point plot and change the shape of the point
 
 plot(c(1,2,3,4),
      c(2,4,6,8),
@@ -164,7 +173,9 @@ plot(c(1,2,3,4),
 ```
 
 Enjoying the show?
-will no more because it is your turn to plot yourself!
+Well, watch time is over because it is time to plot yourself!
+
+### Applying the plot command
 
 ```{r}
 #prepare the data
@@ -215,7 +226,10 @@ Add adequate labels.
 
 ```
 
-Notice that both political ideology and social trust are scaled from 0-10, maybe we can have both on the same plot?
+### Lines
+
+Notice that both political ideology and social trust are scaled from 0-10. 
+Maybe we can have both on the same plot?
 
 ```{r}
 
@@ -251,12 +265,14 @@ lines(
 
 ```
 
+### Points
+
 So once we have the plot() command open, we can add more times to the same plot.
 We can add points too!
 
 ```{r}
 
-#let's say we went out and asked our friends about their education, trust and ideology, and see how they compare to the mean of the dataset
+# Let us say we went out and asked our friends about their education, trust and ideology, and see how they compare to the mean of the dataset
 
 df$edu_friends <- c(4,2,5,1,3,7,6)
 df$lr_friends <-  c(5.2,5.5,5.3,5.5,5.5,5,5.1)
@@ -306,10 +322,10 @@ points(
 
 ```
 
+### Legends
+
 ```{r}
-#the reader has no idea which color is what and what are the points about so let's add a Legend!
-
-
+# The reader has no idea what the colors and points mean, so let us add a legend!
 plot(df$education,
     df$mean_lr,
     xlim = c(1,7),  
@@ -323,8 +339,8 @@ plot(df$education,
      cex.main = 1.2
 )
 
-grid() #throw in a grid for fun!
-box()  #box because the gird is plotted on top of the plot border
+grid() # add a grid
+box()  # box because the grid is plotted on top of the plot border
 
 
 lines(
@@ -334,7 +350,7 @@ lines(
       col = "red"
       )
 
-#say hi to the points() command
+# say hi to the points() command
 points(
        df$edu_friends,
        df$lr_friends,
@@ -344,7 +360,7 @@ points(
 )
 
 
-#yup we can do it many times
+# we can do it many times
 points(
        df$edu_friends,
        df$tr_friends,
@@ -367,38 +383,62 @@ legend("bottomright",   #you can give x and y or location text
        cex = 0.8           #size of legend
        )
 
-#find more legend options using ?legend
+# Other legend locations are "top", "bottom", "topleft", "topright", etc.
+# find more legend options using ?legend
 
 
 ```
 
-Other legend locations are "top", "bottom", "topleft", "topright"...etc
+### Make a plot
 
-Now you are it!
-Let's see you make a plot with a legend.
+Your turn: Let us apply what we just learned. Make a plot with a legend.
+We want to plot the differences between men and women in the confidence of 
+individuals in their ability to participate in politics (cptppola).
+
+Here is the relevant documentation from the codebook of:
+
+**cptppola** - Confident in own ability to participate in politics
+*Question: And how confident are you in your own ability to participate in politics?*
+
+| Value | Category             |
+| ----- | -------------------- |
+| 1     | Not at all confident |
+| 2 	  | A little confident   |
+| 3 	  | Quite confident      |
+| 4 	  | Very confident       |
+| 5 	  | Completely confident |
+| 7 	  | Refusal*             |
+| 8 	  | Don't know*          |
+| 9 	  | No answer*           |
+
+*) Missing Value
+
+First, we have to recode missing values to avoid errors in calculating mean scores.
 
 ```{r}
 
+# Recode missing values (7, 8, 9)
 df2_raw <- na.omit(data.frame(  
- female = ifelse(ess_data$gndr > 1, 1, 0),
-  fair_courts = ifelse(ess_data$cttresa > 10, NA, ess_data$cttresa)))
+  female = ifelse(ess_data$gndr > 1, 1, 0),
+  efficacy = ifelse(ess_data$cptppola > 5, NA, ess_data$cptppola)))
 
-
-df2<- group_by(df2_raw, female) %>% 
-  summarise(mean_courts = mean(fair_courts), se_courts = sd(fair_courts)/sqrt(n()))
+# Calculate means by gender
+df2 <- group_by(df2_raw, female) %>% 
+  summarise(mean_efficacy = mean(efficacy), se_efficacy = sd(efficacy)/sqrt(n()))
 
 print(df2)
 
 
 ```
 
-Now you have the mean level of support for fairness of courts broken down by gender.
-Plot the mean level of support (point plot) then after successfully finishing the plot, add lines to the plot for the standard error.
-Don't forget labels and legend!
+Now you have the mean level of confidence to participate in politics broken down
+by gender. Plot the mean level of support (point plot) then after successfully 
+finishing the plot, add lines to the plot for the standard error.
+Do not forget to add labels and a legend!
 
-hint: to plot the standard error, you to draw line connecting the following two points:
+Hint: To plot the standard error, draw a line connecting the following two points:
 
-mean + SE and mean - SE.
+$mean + SE$ and $mean - SE$.
 
 ```{r}
 
@@ -410,36 +450,35 @@ mean + SE and mean - SE.
 
 ```
 
-That one wasn't easy, let's see it in a basic form then more advanced.
+That one was not easy, let us see it in a basic form and then make it more advanced!
 
 ```{r}
-
 plot(df2$female,
-    df2$mean_courts,
-    xlim = c(-1,2),  
-    ylim = c(8.98,9.08), 
+     df2$mean_efficacy,
+     xlim = c(-0.5,1.5),  
+     ylim = c(1.8,2.6), 
      type = "p",
      pch = 16,     
      col = "black",
-     main = "The Relatiohsip Between Gender and Supporting Fairness of Courts",
-     xlab = "Participant is Female",
-     ylab = "Support for Fairness of Courts",
-      yaxs="i",         
-      xaxs="i",
-    cex.main =  0.95
+     main = "The Relatiohsip between Gender and confidence in participating in politics",
+     xlab = "Respondent is Female",
+     ylab = "Confidence in own ability to participate in politics",
+     yaxs="i",         
+     xaxs="i",
+     cex.main =  0.95
 )
 
 
 lines(
       c(df2[1,1],df2[1,1]),
-       c(df2[1,2]-df2[1,3],df2[1,2]+df2[1,3]),
+      c(df2[1,2]-df2[1,3],df2[1,2]+df2[1,3]),
       lwd = 2,
       col = "black"
       )
 
 lines(
       c(df2[2,1],df2[2,1]),
-       c(df2[2,2]-df2[2,3],df2[2,2]+df2[2,3]),
+      c(df2[2,2]-df2[2,3],df2[2,2]+df2[2,3]),
       lwd = 2,
       col = "black"
       )
@@ -452,21 +491,20 @@ legend("bottomleft",
        cex = 0.8          
        )
 
-text(-0.935,8.9865,"|")
+abline(v = 0.5) # vertical line at x = 0.5
 
 
 ```
 
-Something about the x-axis doesn't look right, well...let's push it to the next level!
+Something about the x-axis does not look right, well... 
+Let us push it to the next level!
 
 ```{r}
-
-
 plot(df2$female,
-    df2$mean_courts,
-    xaxt = "n",          #we remove the x-axis so we can create it our way
-    xlim = c(-1,2),  
-    ylim = c(8.98,9.08), 
+    df2$mean_efficacy,
+    xaxt = "n",          # remove the x-axis so we can create it our way
+    xlim = c(-0.5,1.5),  
+    ylim = c(1.8,2.6), 
      type = "p",
      pch = 16,     
      col = "black",
@@ -488,14 +526,14 @@ axis(
 
 lines(
       c(df2[1,1],df2[1,1]),
-       c(df2[1,2]-df2[1,3],df2[1,2]+df2[1,3]),
+      c(df2[1,2]-df2[1,3],df2[1,2]+df2[1,3]),
       lwd = 2,
       col = "black"
       )
 
 lines(
       c(df2[2,1],df2[2,1]),
-       c(df2[2,2]-df2[2,3],df2[2,2]+df2[2,3]),
+      c(df2[2,2]-df2[2,3],df2[2,2]+df2[2,3]),
       lwd = 2,
       col = "black"
       )
@@ -508,15 +546,21 @@ legend("bottomleft",
        cex = 0.8          
        )
 
-text(-0.935,8.9865,"|")
+abline(v = 0.5) # vertical line at x = 0.5
 
 ```
 
 As you can see, you can do almost anything with your plots.
-Sometimes you just need to think linearly and type all the arguments, other times you need to think outside the box.
+Sometimes you just need to think linearly and type all the arguments, 
+other times you need to think outside the box.
 
-Now let's look at two other important types of plots: histograms and density plots!
-Both are used to see the distribution of your variables, the mean alone or the min/max don't tell the entire story.
+## Other plots
+
+Now let us look at two other important types of plots: histograms and density plots!
+Both are used to see the distribution of your variables. 
+The mean alone or the min/max do not tell the entire story.
+
+### Histogram
 
 ```{r}
 
@@ -540,23 +584,38 @@ hist(df_raw$left_right,
 
 ```
 
-A similar plot can be obtained with plotting the density
+### Density plot
+
+A similar plot can be obtained with plotting the density:
 
 ```{r}
-
 plot(
-     density(df_raw$left_right), #notice density() replaced both x and y
+     density(df_raw$left_right), # notice density() replaced both x and y
      ylab = "Density",
      xlab = "Left-Right",
      main = "Distribution of Lef-Right Political Placement",
-     lwd = 2
+     lwd = 2,
      )
 
+# With the bw (bandwith), kernel or adjust arguments, you can change how and 
+# how much the density is smoothed. 
+# The kernel (default: gaussian) affects the choice of the smoothing algorithm.
+# The bandwidth (bw) affects how much smoothing is applied.
+# The adjust argument is a multiple of the default bandwidth.
+plot(
+     density(df_raw$left_right, 
+             kernel = "rectangular", # use rectangular smoothing 
+             adjust = 0.5),          # half of the default smoothing bandwidth
+     ylab = "Density",
+     xlab = "Left-Right",
+     main = "Distribution of Lef-Right Political Placement",
+     lwd = 2,
+     )
 
 ```
 
 ```{r}
-#let's plot the density of something else
+# Let us plot the density of something else
 
 plot(
      density(df2_raw$female), 
@@ -566,16 +625,20 @@ plot(
      lwd = 2
      )
 
-#we have a bit more females than males in our sample,which is to be expected
+# In our sample, the share of females is slightly higher than the share of males
 
 ```
 
-```{r}
-#you can save your plot as PNG, PDF, or SVG to your computer instead  of just displaying it
+## Export plots
 
+```{r}
+# You can save your plot as PNG, PDF, or SVG to your computer 
+# instead of just displaying it
+
+# Save as PNG
 png("density_plot_gender.png",
-    width = 5, height = 6,  units = "in", #size of the plot (here in inches)
-    res = 300  #resolution (dpi), 300 is usually pretty good
+    width = 5, height = 6,  units = "in", # size of the plot (here in inches)
+    res = 300 # resolution (dpi), 300 usually is sufficient
     )
 
 plot(
@@ -586,26 +649,52 @@ plot(
      lwd = 2
      )
 
-dev.off() #tells R the plotting is over
+dev.off() # tell R the plotting is over
+
+# Save as PDF (PDF generates a vector graphic. Vector graphics are not based on 
+# pixels but resizable vectors. Thus, they do not have a predefined resolution.)
+pdf("density_plot_gender.pdf",
+    width = 5, height = 6, # size of the plot (default: inches)
+    )
+
+plot(
+     density(df2_raw$female), 
+     ylab = "Density",
+     xlab = "Gender:Male = 0, Female = 1",
+     main = "Distribution of Gender in the Sample",
+     lwd = 2
+     )
+
+dev.off() # End plotting to PDF
 
 
 ```
 
-### Concluding Remarks
+It is good practice to save your figures in a subfolder, e.g. "figures/", within
+your working directory. However, keep in mind that R cannot create a folder using
+the `pdf()` command. For example, if you want to create pdf in "figures/" using
+`pdf("figures/plot.pdf")`, then you have to create the "figures" folder first,
+else R will return an error.
+
+
+## Concluding Remarks
 
 This should give you a good introduction to plotting in R.
 Once you have the base, you simply add every detail to your graphic step by step.
-There are a lot more small details you can adjust in your graphics, but there are too many to cover them all.
-The idea was to introduce you to the basics to start making your own graphics, that are presentable enough for publication.
-If you want to save your plots, you can simply click the export button in the plot window.
-For a cheat sheet, click this [Link](https://publish.illinois.edu/johnrgallagher/files/2015/10/BaseGraphicsCheatsheet.pdf).
+There are a lot more small details you can adjust in your graphics, but there are
+too many to cover them all.
+The idea was to introduce you to the basics to start making your own graphics,
+that are presentable enough for publication.
+If you want to save your plots, you can simply click the export button in the 
+plot window. For a cheat sheet, click this [Link](https://publish.illinois.edu/johnrgallagher/files/2015/10/BaseGraphicsCheatsheet.pdf).
 
 You will encounter numerous other plot types such as bar plots and box plots.
-Something else that you will run into is the par() command which allows you to adjust the margin of your graph and display multiple figures on the same plot (next to each other).
+Something else that you will run into is the par() command which allows you to 
+adjust the margin of your graph and display multiple figures on the same plot 
+(next to each other).
 
-### No Exercises this time!
+#### No Exercises this time!
 
-Instead, it would be great it if you check the file "Intro_to_R_Session_4_ggplot.Rmd" and see how plotting is done in ggplot.
-Maybe you will like that alternative way more!
-
-
+Instead, it would be great it if you check the file "Intro_to_R_Session_4_ggplot.Rmd"
+and see how plotting is done in ggplot.
+Maybe you will like the alternatives provided by the `ggplot2` package way more!

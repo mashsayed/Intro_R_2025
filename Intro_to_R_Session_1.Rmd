@@ -1,23 +1,33 @@
 ---
 title: "Intro to R: Session 1"
 output:
-  html_notebook:
-  pdf_document:
   html_document:
+    toc: TRUE
+    toc_float: TRUE
+  pdf_document:
+    toc: TRUE
+    toc_float: TRUE
+  html_notebook:
+    toc: TRUE
+    code_folding: "none"
 editor_options: 
   markdown: 
     wrap: sentence
 ---
 
-In an R Markdown document, you can type and **format** text, and also include images.
-You can execute code in the console or in code chunks, as the one here below.
-To run a line of code, put the cursor on the same line then press **ctrl + enter**.
-To run the entire code chunk press **ctrl + shift + enter**.
+In an R Markdown document, you can type and **format** text, include images, as 
+well as execute code in the console or in code chunks, as the one below.
 
-### First chunk
+To run a line of code using Windows (or Linux), put the cursor on the same line 
+then press **ctrl + enter**. The same shortcut works to run a highlighted part 
+of code. To run the entire code chunk press **ctrl + shift + enter**.
+On macOS, replace **cmd** for **ctrl** to run a line of code, a highlighted part 
+of code or to run the entire code chunk. For the latter, you can also use the 
+functionally equivalent shortcut **cmd + option + c**.
+
+### Our first chunk
 
 ```{r first chunk}
-
 1 + 1 
 
 #This is a comment
@@ -32,10 +42,20 @@ To run the entire code chunk press **ctrl + shift + enter**.
 
 ```
 
+**Tip: Add comments to your code, describing what you are doing and why you are doing it.**
+Comments are an easy way to document what you are doing to other people (friends, coworkers, supervisors, ...) and future you (to remember what you were doing and why you were doing it)
+
+For more details on how to format and use R Markdown, either consult the [official website](https://rmarkdown.rstudio.com/lesson-1.html) or the [cheatsheet](https://rmarkdown.rstudio.com/lesson-15.html). No need to save the 
+link: In RStudio, you can always access it under 
+**Help \> Cheat Sheets \> R Markdown Cheat Sheet**.
+
+An overview of all shortcuts (for your current operating system) is available
+under **Tools > Keyboard Shortcuts Help**.
+
+
 ### R as calculator
 
-```{r}
-
+```{r calculator}
 5 + 2 #Addition 
 5 - 2 #Subtraction
 5 * 2 #Multiplication
@@ -51,8 +71,7 @@ You can carry out more complex operations using *functions*.
 
 ### Functions
 
-```{r}
-
+```{r functions}
 #get the square root of 4
 4^(0.5)
 
@@ -83,26 +102,23 @@ print("Functions make life easier")
 
 ```
 
-Feel free to do some operations and use some functions in the following chunk and in the console too.
-To clear the console, click at a new line on the console then press ctrl + l.
+Feel free to try some operations and use some functions yourself. 
+You can **add a new code chunk** or run code in the console below. 
+- To clear the console, click at a new line on the console then press ctrl + l.
+- To add a new code chunk, click the *Insert Chunk* button on the toolbar above
+or by pressing *Ctrl+Alt+I* on Windows or *Cmd+Option+I* on macOS.
 
-```{r}
+**ADD NEW CODE CHUNK HERE**
 
+You can also add a new code chunk yourself by clicking the *Insert Chunk* button on the toolbar or by pressing **Ctrl+Alt+I** on Windows or **Cmd+Option+I** on macOS.
 
-
-
-
-
-```
+### Functions with arguments
 
 So the form of a function is the name of the function followed by ( ).
 What goes inside the parentheses is called the *arguments* of the function.
 So far, we only provided the function with an input argument, but further arguments can be provided as extra options for how the function would work.
 
-### Functions with arguments
-
-```{r}
-
+```{r arguments}
 #remember the rounding task?
 round(3.142)
 
@@ -165,9 +181,9 @@ paste("Peter Parker", "MJ", sep = " *hearts* ")
 
 ```
 
-lets take some time to play with functions.
+Let us take some time to play with functions.
 
-### Some Exercises
+### Some exercises (part 1)
 
 **Problem 1**
 
@@ -177,7 +193,6 @@ You expect the project to start financing itself after **10** years, so you get 
 How much do you expect to have paid the bank by the end of the period?
 
 ```{r}
-
 #you can use this following formula:
 #total amount = the principal * (1 + interest rate * years)
 
@@ -200,7 +215,6 @@ Candidate A has position of **6** on both cultural and economic issues, while ca
 Which candidate is she more likely to vote for?
 
 ```{r}
-
 #hint: she is likely to vote for the candidate with the smaller distance
 #to her issue positions, use these formulas:
 # D_A = W_E * |P_EV - P_EA| + W_C *|P_CV - P_CA|
@@ -230,7 +244,6 @@ As you must have noticed in the last example.
 The formula for choosing the smallest distance could get quite complicated.
 
 ```{r}
-
 min(0.3 * abs(2-6) + 0.7 *abs(5-6), 0.3 * abs(2-3) + 0.7 *abs(5-3))
 
 #this would have been easier
@@ -250,8 +263,7 @@ You can think of objects as storage containers for your calculations.
 
 ### Objects
 
-```{r}
-
+```{r objects}
 #you can assign an object using the <- operator
 
 age <- 23
@@ -290,7 +302,6 @@ There are rules for naming objects.
     lets look at an example in the following chunk:
 
 ```{r}
-
 #if you are calculating the area of a trianlge with base length 2 cm and height 3 cm, you can go about it like this:
 
 tri_area <- 0.5 * 2 * 3
@@ -331,7 +342,7 @@ Objects can store different *data types*:
 You can check the type of an object using the `class()` command, you can also convert the type of an object (where possible) with commands such as `as.numeric` .
 Let's have a look below:
 
-```{r}
+```{r data types}
 
 area <- 15.1
 
@@ -400,7 +411,7 @@ We need a series of age observations.
 A series of observation in R is called a **vector**.
 You can use the command `c()` to create a vector from your input.
 
-```{r}
+```{r vectors}
 
 philosophers <- c("Hegel", "Nietzsche", "Leibniz", "kant")
 
@@ -452,11 +463,11 @@ print(confused_vector)
 
 ```
 
-### Some Exercises 2
+### Some more exercises (part 2)
 
-```{r}
+**Task 1**
 
-#Task 1
+```{r Task 1}
 #think about 5 cities you visited or want to visit
 #write their names in a vector
 
@@ -470,16 +481,11 @@ print(confused_vector)
 
 #create a logical vector that takes the value TRUE if humans can survive this new temperature and FALSE if they can't
 
+```
 
+**Task 2**
 
-
-
-
-
-
-
-
-#Task 2
+```{r Task 2}
 #In the European Social Survey (ESS), the left-right political ideology scale is from 0 to 10, 0 being extreme left and 10 being extreme right
 #guess the ideological placement of the following voters and create a vector of the values:
 #Christian Democrat, the Left party, Liberal party, Green Party, AFD, and Social Democrat
@@ -488,11 +494,11 @@ print(confused_vector)
 
 #modify your vector so the ideological placement would be scaled from 0 to 1
 
+```
 
+**Task 3**
 
-
-
-#Task 3
+```{r Task 3}
 #In the European Social Survey, political interest is scaled from 1-4, where 1 means very interested in politics, and 4 means very uninterested in politics. This is counter intuitive. create a vector for the political interest values of the following survey participants **then** reverse the scale so 4 would mean very interested in politics
 
 #participant 1: very interested
@@ -505,17 +511,11 @@ print(confused_vector)
 
 #hint: use the formula: new_value = |old_value -(max(old_value) + min (old_value))|
 
-
-
-
-
-
-
-
-
 ```
 
-Before we move on from vectors, let's look at creating a vector from a sequence of numbers and selecting specific elements from vectors.
+
+Before we move on from vectors, let us look at creating a vector from a sequence 
+of numbers and selecting specific elements from vectors.
 
 ```{r}
 
@@ -584,7 +584,8 @@ first_three_letters <- alphabet[c(T,T,T,F,F)]
 
 ```
 
-let's take a couple of minutes to play around with sequencing and sub-setting the vectors.
+Let us apply what we just learned and take a couple of minutes to play around 
+with sequencing and sub-setting the vectors.
 
 ```{r}
 
@@ -622,9 +623,11 @@ country <- c("DE", "DK", "ES", "FI", "FR", "GB", "IT")
 ```
 
 We mentioned that you can select from/subset vectors using logical vectors.
-But we do not need to manually specify which elements to include or exclude, we can define certain *conditions* for including elements.
-For example, if you have a vector of student grades, you can choose to include only students above or below a certain grade.
-To define these conditions, we first need to get to know some logical operators.
+But we do not need to manually specify which elements to include or exclude, 
+we can define certain *conditions* for including elements. For example, if you 
+have a vector of student grades, you can choose to include only students above or
+below a certain grade. To define these conditions, we first need to get to know 
+some logical operators.
 
 ### Logical Operators
 
@@ -684,14 +687,14 @@ You can also use logical operators:
 
 ```
 
-Now let's use this conditions we learnt for subsetting vectors.
+Now let us apply conditions to subset vectors.
 
 ```{r}
 
 #we have a vector for temperatures
 temp <- c(20, 41, 10, -2 , 35, -3, 8, 18)
 
-temp == 20 #find room temperature
+temp == 20 # find room temperature
 room_temp <- temp[temp == 20]
 print(room_temp)
 
@@ -719,7 +722,7 @@ print(nice_temp)
 
 ```
 
-### Some Exercises 3
+### Some more exercises (part 3)
 
 **Rising populist threat in Germany:**
 
@@ -738,7 +741,7 @@ absolute populist majority: 50% \<= vote populist \< 63%
 
 super populist majority: vote populist \>= 63%
 
-**hint**: you can count the number of elements in a vector with the `length()` function
+**Hint**: you can count the number of elements in a vector with the `length()` function
 
 ```{r}
 
@@ -863,7 +866,7 @@ View(df_example)
 
 ```
 
-### Some Exercises 4
+### Some more exercises (part 4)
 
 Think of five universities, including the university of Mannheim.
 Create a dataframe containing variables for the names of the universities, the number of students attending each year (just guess), which city the universities are in, and the number of people living in each city (again just guess), and whether you applied for that university or not (logical vector).
@@ -886,8 +889,6 @@ Create a dataframe containing variables for the names of the universities, the n
 
 
 #select all columns except the application to university and save it in a new dataframe
-
-
 
 
 
@@ -1028,11 +1029,12 @@ ess_df <- data.frame(left_right = c(2,5,3,7,1,8,10,0),
 
 ```
 
-## End of Session Exercises:
+## End of Session exercises (part 4):
 
 ### Exercise 1:
 
-Create a vector called `my_vector` with the values 1,2,3 and check is class.
+Create a vector called `my_vector` with the values 1,2,3 and check the class of
+the `my_vector` object.
 
 ```{r, eval=FALSE}
 #create the vector 
@@ -1050,9 +1052,8 @@ Make three vectors with three entries and bind them together to a the matrix `st
 Print the matrix.
 
 ```{r, eval = FALSE}
-#Create the vectors 
-
-name <- 
+#Create the vectors "name", "age", and "major" and assign some values
+name <-
 age <- 
 major <- 
 
@@ -1070,10 +1071,10 @@ If the number is positive, print "Number is positive", otherwise print "Number i
 Feel free to decide if you want to use the ifelse function or the ifelse condition.
 
 ```{r}
-
-#Assigning the number to the object "number"
+#Assign a number to the object "number"
 number <- -4
 
+#Check whether number is positive or negative
 
 
 ```
@@ -1083,8 +1084,98 @@ number <- -4
 Write an if-else ladder that categorizes a student's grade based on their score.
 The grading criteria are as follows:
 
-Score \>= 90: "A" Score \>= 80 and \< 90: "B" Score \>= 70 and \< 80: "C" Score \>= 60 and \< 70: "D" Score \< 60: "F"
+Score \>= 90: "A" Score 
+\>= 80 and \< 90: "B" Score 
+\>= 70 and \< 80: "C" Score 
+\>= 60 and \< 70: "D" Score 
+\< 60: "F"
+
+Using the previously created `grade` or assign a new value, test your code!
 
 ```{r}
 
+
+
 ```
+
+
+### Bonus exercise 5: Writing your own function (hard!) {.tabset .tabset-fade .tabset-pills .unlisted}
+
+<details>
+<summary> Open Bonus exercise (Are you sure?)</summary>\ <details>
+  <summary> Are you REALLY sure? </summary>
+If you have made it this far and there is still time left, or you are curious to play around at home, here is a much more difficult exercise to get a glance at another very useful functionality in R: declaring your own functions!
+
+To declare a new function, use `function()`. You can consult the documentation 
+to get an overview of the command using `?"function"` or `help("function")` (quotation marks are mandatory in both cases). *We will also cover this together and in detail in session 5 of the course!*
+
+While defining a function you can also define any number of arguments. By default, a function will return the *last evaluated expression*. Use `return()` to explicitly declare which object should be returned. You can use `return()` multiple times to return multiple objects, but you cannot use multiple arguments in a single call of `return()`.
+
+Define a function and assess test scores to assign a grade similar to exercise 4. Then, apply your function to grade the test scores in the `scores` vector generated in the following chunk. **This is just to set up the exercise and you do not need to understand this code in detail!** The comments explain what each line of code achieves.
+
+```{r generate test scores}
+# First, we set a seed. This guarantees that we can replicate "random" number generations, i.e., a "random" process is the same every time we run it
+set.seed(1701)
+
+# Next, we randomly draw 300 values from a normal distribution with a mean of 76 and a standard deviation of 30. Then we round the draws to integer values.
+scores <- round(rnorm(300, mean = 76, sd = 30))
+
+# Finally, we sample and store 20 exam scores, discarding values below 0 
+# (everything wrong) and above 100 (everything correct).
+scores <- sample(scores[scores >= 0 & scores <= 100], 20)
+
+```
+
+
+**Now it is your turn! Try to complete the code chunk below: Declare a function 
+to grade test scores using the same conditions listed in exercise 4 and apply 
+your function to grade the test scores in the `scores` vector.** 
+In the *incomplete function below*, vector subsetting is used to target specific
+ranges of test scores and assign grades, similar to what we have learned in 
+section "Logical Operator" for room temperature. 
+Alternatively, you can use the ifelse() function.
+
+```{r define grading function}
+# define a function named grade_score()
+grade_score <- 
+  # complete list of arguments (arglist)
+  # optional: declare default values for arguments using =
+  function(score, threshold_A=90, threshold_B, threshold_C,  ) 
+    # begin definition of function
+    {
+       # subset test scores to target only those scores which meet the condition         # of being equal to or larger than the threshold declared in "threshold_A"
+       # and replace subset of scores with grade "A"
+       score[score >= threshold_A] <- "A"
+       # grade "B"
+       score[score < threshold_A & score  ] <- "B"
+       # grade "C"
+       
+       # grade "D"
+       
+       # grade "F"
+  
+       # return grades
+
+    } # end definition of function
+
+```
+
+If you have not done so already, now is the time to apply your newly declared 
+function on the `scores` vector. To do so, simply call your function, e.g. `grade_students()` and supply the necessary arguments.
+
+```{r apply grading function to test scores}
+# apply function to 'scores' vector
+grade_score(score =  ,
+            #threshold_A = 90, # not needed if default value is correct
+            threshold_B =  ,
+)
+
+```
+
+If this was too hard for now, do not despair! We will cover functions thoroughly
+in session 4 of this course. Likely, you will find this task a lot easier by then.
+You can look forward to your learning progress!
+
+</details></details>\
+
+
