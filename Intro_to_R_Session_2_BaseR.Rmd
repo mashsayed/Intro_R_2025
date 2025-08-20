@@ -1,17 +1,17 @@
 ---
 title: "Intro to R: Session 2"
 output:
-  html_notebook:
+  html_document:
     toc: TRUE
-    code_folding: "none"
+    toc_float: TRUE
     toc_level: 3
   pdf_document:
     toc: TRUE
     toc_float: TRUE
     toc_level: 3
-  html_document:
+  html_notebook:
     toc: TRUE
-    toc_float: TRUE
+    code_folding: "none"
     toc_level: 3
   editor_options: 
     markdown: 
@@ -695,6 +695,6 @@ adjust the margin of your graph and display multiple figures on the same plot
 
 #### No Exercises this time!
 
-Instead, it would be great it if you check the file "Intro_to_R_Session_4_ggplot.Rmd"
+Instead, it would be great it if you check the file "Intro_to_R_Session_2_ggplot.Rmd"
 and see how plotting is done in ggplot.
 Maybe you will like the alternatives provided by the `ggplot2` package way more!
