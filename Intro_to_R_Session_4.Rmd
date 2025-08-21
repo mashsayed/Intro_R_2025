@@ -1,9 +1,9 @@
 ---
 title: "Intro to R: Session 4"
 output:
-  html_notebook:
-  pdf_document:
   html_document:
+  pdf_document:
+  html_notebook:
 editor_options: 
   markdown: 
     wrap: sentence
@@ -105,7 +105,7 @@ if (grade == 1.0) {
 ```
 
 I could now write down all my grades and assign them as I did in the first chapter, 
-but there is a way to automatize this process.
+but there is a way to automate this process.
 For that I will use the `For` loop.
 
 First, let us make a vector with grades:
@@ -227,7 +227,7 @@ legend("bottomright",
 
 ### 1.2 Nested Loops
 
-Since you will eventually encounter them, I will show you shortly nested loops, 
+Since you will eventually encounter them, I will shortly show you nested loops, 
 although they are not super common (because most R functions are vectorized):
 
 First, let us play a game of tic tac toe:
@@ -321,9 +321,9 @@ is part of a family: `sapply()`, `lapply()`, `tapply()` are also in that family.
 
 ## 3. Writing your own functions
 
-We can again safe a lot of time and be more efficient by writing our own function.
+We can again save a lot of time and be more efficient by writing our own function.
 
--   First, you need to define a name for your function#
+-   First, you need to define a name for your function
 -   Afterwards, you write down the command with the `function()` command. Put your 
     variables into the parentheses. Later your input follows those variables.
 -   After the fancy brackets, you define your operation with your predefined variables.
@@ -436,11 +436,11 @@ sq(numbers)
 
 This is the midnight formula separated in two equations:
 
-\$\$
+$$
 
 x\_{1,2} = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
 
-\$\$
+$$
 
 Make **one function** for the midnight formula, so the output are both.
 Test it with a = 2, b = -6, c = -8
@@ -531,7 +531,7 @@ Also here are some additional resources:
     For this case the R cheat sheets for some important packages are helpful.
     I recommend to print or save digitally the cheat sheets for dplyr, ggplot2, and [base R](https://iqss.github.io/dss-workshops/R/Rintro/base-r-cheat-sheet.pdf).
 
--   [Hertie School Data Science Summer School 2021/22/23](https://www.youtube.com/@datasciencelab.berlin/playlists): 
+-   [Hertie School Data Science Summer School](https://www.youtube.com/@datasciencelab.berlin/playlists): 
 Amazing tutorials in English from a top German University. The tutorials cover 
 topics from introduction to R, visualizing data in R, to more advanced topics 
 like webscraping with R. You can work on many skills and application of R once 

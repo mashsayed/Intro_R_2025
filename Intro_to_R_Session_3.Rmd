@@ -123,7 +123,7 @@ in R using the command `?read.csv`.
 For the following Data manipulation part, we will use the European Social Survey 
 (ESS) Round 11, conducted from 2023 to 2024 in 31 European countries with the 
 topic “Social inequalities in health, Gender in contemporary Europe". As survey 
-data is quite popular among students and common in the social sciences, the ESS, 
+data are quite popular among students and common in the social sciences, the ESS, 
 a high-quality survey, serves as a great example. Do not worry if you do not like
 survey data, we will cover other prominent datasets, too.
 
@@ -227,10 +227,10 @@ To change this default behaviour, one can use placeholders ('\_' for \|\> and
 
 ### 4.1 Filtering your data {.tabset}
 
-Often you are not interesting in using all your observations, rather want to 
+Often you are not interested in using all your observations and rather want to 
 select some rows based on a certain condition. Remember in the last session, we
 selected certain elements from a vector using a logical condition. We will follow
-the same procedure for dataframe. Let us have a quick reminder:
+the same procedure for a dataframe. Let us have a quick reminder:
 
 ```{r filtering vectors}
 # We have a vector of temperature values
@@ -490,7 +490,7 @@ and an one including additional control variables.
 
 ```
 
-### 4.3 reordering your dataset {.tabset}
+### 4.3 Reordering your dataset {.tabset}
 
 #### base R
 
@@ -649,16 +649,16 @@ head(d2)
 
 ```{r}
 
-#we already now how to create to variables
+#we already now how to create variables
 
 d2$age_sq <- d2$age^2  #age squared is a usual control term
 ```
 
-There are several reasons to record a variables:
+There are several reasons to recode a variable:
 
-1.  The current coding is counter intuitive Remember the example where political interest was coded from 1-4 and 1 meant very interested in politics?
+1.  The current coding is counterintuitive Remember the example where political interest was coded from 1-4 and 1 meant very interested in politics?
 
-2.  you might want to convert a continuous variable into categorical remember when we converted left-right ideology (0-10) into c("left", "center", "right)?
+2.  you might want to convert a continuous variable into categorical. Remember when we converted left-right ideology (0-10) into c("left", "center", "right)?
 
 3.  missing values are given a code that can confuse our calculations:
 
@@ -832,18 +832,20 @@ In the code below, do the following steps:
 
 ## 5. Handling Missing Values/Incomplete Data {.tabset}
 
-As you saw right now, not all data in a dataset is complete.
+As you saw right now, not all data in a dataset are complete.
 Of course not, there are several sources, which can lead to incomplete/missing data.
 Which means we need to deal with it directly.
-If we look into the codebook, the ESS declares different types of missing values with high numbers: 77 means “Refusal”, so the respondent refused to answer, 88 means “dont know”, and 99 “No answer”.
+If we look into the codebook, the ESS declares different types of missing values with high numbers: 77 means “Refusal”, so the respondent refused to answer, 88 means “don't know”, and 99 “No answer”.
 Note that the ESS does so, since some researchers are interested in missing values, and why they happen, so they can investigate it.
 
 For us, this is a problem, because we cannot run an analysis with missing values.
 There are two options:
 
--   Using statistics to artificially fill them out, this called multiple imputation techniques
+-   Using statistics to artificially fill them out, these are called imputation techniques
 
 -   Just delete incomplete observations to have a dataset without missing values
+
+-   Note that deleting incomplete observations will often lead to bias in your results. We will learn more about this in QM/AQM
 
 ### base R
 
@@ -921,7 +923,7 @@ For this case you load both datasets and **merge** them together.
 **This only works if there is a similar data structure, so know your data !**
 
 As an example, I will show how to do that with **World Bank Data**.
-From this data we can gather nearly all important economic indicators.
+From these data we can gather nearly all important economic indicators.
 But mostly we need to merge them to datasets we are interested in.
 We will merge the **World Bank Data** with the **KOF Globalization Index**.
 The **KOF Globalization Index** is one of the most prominent Globalization Indices, and highly influential.
@@ -944,11 +946,11 @@ Afterwards we define, which variables we want.
 You do that by using the official indicator, thus the variable you want.
 You can find the indicators on the website of the [world bank data](https://data.worldbank.org/indicator).
 Click on the variables you want, then click on the details, and there you find the indicator.
-I will use GDP per capita, Fuel exports, CO2 emissions (kt).
+I will use GDP per capita and Fuel exports.
 
 ```{r}
 
-indicators = c("NY.GDP.PCAP.CD", "TX.VAL.FUEL.ZS.UN", "EN.ATM.CO2E.KT")
+indicators <- c("NY.GDP.PCAP.CD", "TX.VAL.FUEL.ZS.UN")
 
 ```
 
@@ -961,7 +963,7 @@ wb <- WDI(
   country = countries, #We include our countries 
   indicator = indicators, #We include our variables 
   start = 1960, #start date 
-  end = 2023) #end date 
+  end = 2025) #end date 
 
 #This takes some time, especially if you have more countries and indicators.
 
@@ -1013,8 +1015,7 @@ We want the KOF Globalization Index assigned to a country X at a year Y:
 
 #We want to merge into the World Bank Dataset 
 
-merged_data <- left_join(wb, kof, by = c("iso3c" = "code", 
-                                         "year" = "year")) #You define your first/left table, and then the second/right table comes next. Afterwards you define the common identifiers. 
+merged_data <- left_join(wb, kof, by = c("iso3c" = "code", "year" = "year")) #You define your first/left table, and then the second/right table comes next. Afterwards you define the common identifiers. 
 
 head(merged_data) #Now we need to clean the dataset
 
@@ -1030,8 +1031,7 @@ colnames(kof)[which(colnames(kof) == "country")] <- "cntry"
 
 
 #let's merge again and see now:
-merged_data_new <- left_join(wb, kof, by = c("iso3c" = "code", 
-                                         "year" = "year"))
+merged_data_new <- left_join(wb, kof, by = c("iso3c" = "code", "year" = "year"))
 
 colnames(merged_data_new) #looks good!
 
@@ -1039,8 +1039,7 @@ colnames(merged_data_new) #looks good!
 
 #inner join: only keep common observations
 
-merged_data2 <- inner_join(kof, wb, by = c("code" = "iso3c", 
-                                           "year" = "year"))
+merged_data2 <- inner_join(kof, wb, by = c("code" = "iso3c", "year" = "year"))
 
 head(merged_data2)
 
@@ -1053,7 +1052,7 @@ nrow(merged_data2) #inner_join has less rows!
 
 ### Exercise 1:
 
-You are interested in discrimination and the perception of the judicial.
+You are interested in discrimination and the perception of the judicial system.
 More specifically, you want to know if people, who feel discriminated evaluate courts differently.
 Below you see a table with all variables you want to include in your analysis:
 
@@ -1070,11 +1069,10 @@ Below you see a table with all variables you want to include in your analysis:
 
 a.  Wrangle the data, and assign it to an object called **ess**.
 b.  Select the variables you need
-c.  Filter for Austria, Belgium, Denmark, Georgia, Iceland and the Russian Federation
+c.  Filter for Austria, Belgium, Denmark, Georgia, Iceland and Latvia
 d.  Have a look at the codebook and code all irrelevant values as missing. 
     If you have binary variables recode them from 1, 2 to 0 to 1\
-e.  You want to build an extremism variable: You do so by subtracting 5 from the
-    from the variable and squaring it afterwards. Call it extremism
+e.  You want to build a quadratic term for the left-right scale. Square the variable and name it *lr_squared*
 f.  Rename the variables to more intuitive names, don't forget to name binary 
     variables after the category which is on 1
 g.  drop all missing values
