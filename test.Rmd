@@ -5,8 +5,9 @@
 #some change
 
 #small change by maaike
-
+#Elina is here
+#Stephanie is also here
 
 ```
 
-#Elina was here
+
