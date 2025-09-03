@@ -13,8 +13,4 @@
 #Hello 2
 #Ruslan types "Hello World"
 
-#Arne´s small change
-
 ```
-
-#Henry has done it #hey it's emily
