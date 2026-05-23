@@ -2,21 +2,6 @@
 #This is a test file
 
 #some change
-
-#small change by maaike
-#Elina is here
-#Stephanie is also here
-# Max skips Henry
-# Marietta is trying
-#Ajda
-# marie-hendrike made a change 
-#Hello 2
-#Ruslan types "Hello World"
-
-#small change
-#new edit
-#hello from line 17
-#Henry is back
 ```
 ```{r}
 #we are done
